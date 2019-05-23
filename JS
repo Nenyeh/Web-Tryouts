@@ -21,7 +21,7 @@
         reader.onload = function (e) {
             $('#blah')
                 .attr('src', e.target.result);
-                customTxt.innerHTML = realFileBtn.value;
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
         };
 
         reader.readAsDataURL(input.files[0]);
