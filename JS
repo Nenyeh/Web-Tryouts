@@ -59,3 +59,46 @@ img{
   input[type=file]{
   padding:10px;
   background:#2d2d2d;}
+  
+  
+  Friday 24
+  
+<script> 
+var realFileBtn = document.getElementById("real-file");
+var customBtn = document.getElementById("upload-logo");
+var customTxt = document.getElementById("custom-text")
+
+function myFunction() {
+  realFileBtn.click();
+  var x = document.getElementById('default-logo');
+  if (x.style.display === 'none') {
+    x.style.display = 'inline';
+  } 
+}
+
+function readURL(input) {
+if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $('#blah')
+            .attr('src', e.target.result);
+            customTxt.innerHTML = realFileBtn.value;
+    };
+
+    reader.readAsDataURL(input.files[0]);   
+  }
+}
+
+
+
+
+
+
+/*function ShowImage(){
+var defaultBtn = document.getElementById("default-logo");
+defaultBtn.style.display = "none";
+document.getElementById("default-image").style.display = "inline";
+
+
+// add functionality for each time the default button is clicked, it lets the upload button upload a chosen picture
+} */
