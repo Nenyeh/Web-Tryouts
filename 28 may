@@ -1,0 +1,123 @@
+<label for='org-name' class='col-xs-12 col-sm-3 control-label'>Logo</label>
+<input type="file" id="real-file" style="display:none" onchange="readURL(this);"/> 
+<button type="button" id ='upload-logo' onclick="myFunction()"> Upload  </button>
+<button type="button" id ='default-logo' style="display:none" onclick="ShowImage()"> Use Default  </button>
+<img id="blah" src="/images/members-portal-dark.png" alt="your image" />
+          
+          
+          
+img{
+	max-width:4%;
+	position:relative;
+	left:50%;
+	top:30%;
+	object-fit: cover;
+	
+    
+	
+  }
+  
+  input[type=file]{
+  padding:10px;
+  background:#2d2d2d;}
+
+
+
+#custom-text{
+	margin-right:4px;
+	font-family: arial;
+	color:#aaa;
+}
+
+#upload-logo{
+	position:relative;
+	left:14px;
+	top:15px;
+	background-color: rgba(228, 20, 47, 0.89);
+	border-radius: 6px;
+	color: rgb(219, 216, 216);
+	border: 2px solid rgb(227, 231, 227); 
+	padding: 3px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: center;
+	font-size: 10px;
+	font-family: 'arial';
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  
+  }
+
+  #upload-logo:hover{
+	background-color: rgba(228, 20, 47, 0.89);
+	color: rgba(66, 59, 55, 0.808)
+}
+
+  #default-logo{
+	position:relative;
+	left:-50px;
+	top:37px;
+	background-color: rgba(228, 20, 47, 0.89);
+	border-radius: 6px;
+	color: rgb(219, 216, 216);
+	border: 2px solid rgb(227, 231, 227); 
+	padding: 3px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: center;
+	font-size: 10px;
+	font-family: 'arial';
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  }
+
+#default-logo:hover{
+	background-color: rgba(228, 20, 47, 0.89);
+	color: rgba(66, 59, 55, 0.808)
+}          
+          
+          
+          
+          
+          
+          
+          
+var realFileBtn = document.getElementById("real-file");
+var customBtn = document.getElementById("upload-logo");
+var customTxt = document.getElementById("custom-text")
+
+function myFunction() {
+  realFileBtn.click();
+  var x = document.getElementById('default-logo');
+  if (x.style.display === 'none') {
+    x.style.display = 'inline';
+  } 
+}
+
+function readURL(input) {
+if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $('#blah')
+            .attr('src', e.target.result);
+            
+    };
+
+    reader.readAsDataURL(input.files[0]);   
+  }
+}
+
+function ShowImage(){
+var defaultBtn = document.getElementById("default-logo");
+var defaultImg = document.getElementById("blah");
+defaultImg.src = "/images/members-portal-dark.png";
+defaultBtn.style.display = "none";
+
+
+}
