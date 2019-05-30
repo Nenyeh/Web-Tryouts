@@ -1,0 +1,45 @@
+
+        callAJAX() {
+            var data = this.get('fileEncodedForServer');
+            
+            //check to see if using ember spinner
+            var spinner = this.get('spinner'); 
+            //if using ember spinner
+            if (spinner) {
+                spinner.show('main-spinner');
+            }
+            
+            var _this = this;     
+            ajax({
+              beforeSend: function(request) {
+                request.setRequestHeader('WWW-Authenticate', 'Token realm="Application"');
+              },
+              url: `${_this.get('session.apiHost')}${_this.get('apiPath')}`,
+              method: 'PUT',
+              data: {
+                  picture: data
+              },
+              success() {
+                //if using ember spinner
+                if (spinner) {
+                    spinner.hide('main-spinner');
+                }
+                _this.send('toggleFileUpload');
+                if(_this.get('updateAfterUploadID')) {
+                    jQuery(`.${_this.get('updateAfterUploadID')}`).each(function(){this.src = _this.get('fileEncoded');});
+                    _this.set('session.individual_picture', _this.get('fileEncoded'));
+                    }
+                sweetAlert({title: "Photo was successfully updated.", text: " ", type: "success"}, function(){});
+              },
+              error(){
+                  //if using ember spinner
+                if (spinner) {
+                    spinner.hide('main-spinner');
+                }
+                  sweetAlert({title: "Problem uploading photo", text: " ", type: "error"}, function(){});
+                }
+            });
+        }
+    },    
+});
+
